@@ -1,8 +1,38 @@
-# Mouse Mover
+# Mouse Mover — Python Mouse Jiggler for macOS & Windows
 
-A lightweight utility that nudges the cursor by a small randomized amount
-at a configurable interval. It never clicks, types, scrolls, or interacts
-with any application or presence indicator — it only moves the pointer.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
+[![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Windows-lightgrey.svg)](#)
+
+**Mouse Mover** is a lightweight, open-source Python script that
+automatically moves your mouse cursor by small randomized amounts at a
+configurable interval — a simple **mouse jiggler** for macOS and Windows
+that keeps your screen from locking, sleeping, or triggering a
+screensaver during long-running tasks, presentations, screen recordings,
+or unattended monitoring dashboards.
+
+It runs quietly in the background (CLI or macOS menu-bar app), needs no
+internet access or third-party service, and never clicks, types, scrolls,
+or interacts with any application — it only moves the pointer within your
+screen's visible bounds.
+
+## Features
+
+- **Randomized, natural-looking cursor movement** — configurable interval
+  (default 60s) and pixel range (default ±15px), with an optional smaller
+  follow-up nudge 0.2–1s later.
+- **Cross-platform CLI** (`mouse_mover.py`) — works on both **macOS** (Apple
+  Silicon and Intel) and **Windows**, using `pyautogui`.
+- **macOS menu-bar app** (`mouse_mover_menubar.py`) — start/pause the mover
+  and pick an interval from a native macOS menu-bar dropdown.
+- **Safe by design** — screen-bounds clamped, no clicks/keystrokes/scrolling,
+  no targeting of specific apps, and a built-in fail-safe (drag the cursor to
+  a screen corner to interrupt it).
+- **Background/daemon-friendly** — auto-starts when launched with no
+  attached terminal (e.g. via `nohup` or a scheduled task), so it works as
+  a always-on-top screensaver blocker / keep-awake / anti-idle utility.
+- **Zero dependencies beyond `pyautogui`** (and `rumps` for the optional
+  macOS menu-bar UI) — no external services, telemetry, or network calls.
 
 Two versions are included:
 
@@ -13,6 +43,15 @@ Two versions are included:
 
 If you need this to run on both a Mac and a Windows machine, use
 `mouse_mover.py` on both — the menu-bar version has no Windows equivalent.
+
+## Table of contents
+
+1. [Requirements](#1-requirements)
+2. [Installation](#2-installation)
+3. [Running the CLI version](#3-running-the-cli-version-mouse_moverpy)
+4. [Background execution](#4-background-execution-cli-version)
+5. [Menu-bar version (macOS)](#5-menu-bar-version-macos-only)
+6. [Safety notes](#6-safety-notes)
 
 ## 1. Requirements
 
@@ -232,3 +271,14 @@ kill -SIGTERM <PID>
 - `pyautogui.FAILSAFE` stays enabled: if you manually drag the cursor into
   a screen corner, pyautogui raises a `FailSafeException`, which both
   scripts catch quietly and simply skip that movement cycle.
+
+## License
+
+MIT — see [LICENSE](LICENSE). Free to use, modify, and distribute.
+
+---
+
+**Keywords:** mouse mover, mouse jiggler, python mouse mover, keep mouse
+moving, prevent screensaver, prevent screen lock, keep computer awake,
+anti-idle script, auto mouse movement, macOS menu bar app, cross-platform
+mouse automation, pyautogui script, wiggle mouse python.
